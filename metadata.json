@@ -1,0 +1,6 @@
+{
+  "name": "Dewi Wedding84 - Wedding Planner & MUA",
+  "description": "Website resmi Dewi Wedding84: Layanan Wedding Organizer & Make Up Artist (MUA) pengantin profesional, paket pernikahan elegan, portofolio, dan konsultasi gratis.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
