@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="web_dashboard" name="shell-type">
+  <title>Portal Admin - Dewi Wedding84 Bridal &amp; Decor</title>
+  <meta name="description" content="Portal Administrasi Dewi Wedding84 - Kelola portofolio, paket layanan, dan konten website.">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "background": "#fcf9f8",
+            "surface": "#fcf9f8",
+            "surface-dim": "#dcd9d9",
+            "surface-bright": "#fcf9f8",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f6f3f2",
+            "surface-container": "#f0eded",
+            "surface-container-high": "#eae7e7",
+            "surface-container-highest": "#e4e2e1",
+            "on-surface": "#1b1c1c",
+            "on-surface-variant": "#514343",
+            "inverse-surface": "#303030",
+            "inverse-on-surface": "#f3f0f0",
+            "outline": "#847373",
+            "outline-variant": "#d6c2c1",
+            "surface-tint": "#845050",
+            "primary": "#845050",
+            "on-primary": "#ffffff",
+            "primary-container": "#c98b8b",
+            "on-primary-container": "#512627",
+            "inverse-primary": "#f9b5b5",
+            "primary-fixed": "#ffdad9",
+            "primary-fixed-dim": "#f9b5b5",
+            "on-primary-fixed": "#350f11",
+            "on-primary-fixed-variant": "#69393a",
+            "secondary": "#745a27",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#fedb9b",
+            "on-secondary-container": "#795f2b",
+            "secondary-fixed": "#ffdea4",
+            "secondary-fixed-dim": "#e4c285",
+            "on-secondary-fixed": "#261900",
+            "on-secondary-fixed-variant": "#5a4312",
+            "tertiary": "#735758",
+            "on-tertiary": "#ffffff",
+            "tertiary-container": "#b49393",
+            "on-tertiary-container": "#442d2d",
+            "tertiary-fixed": "#ffdada",
+            "tertiary-fixed-dim": "#e2bebe",
+            "on-tertiary-fixed": "#2a1617",
+            "on-tertiary-fixed-variant": "#5a4041",
+            "error": "#ba1a1a",
+            "on-error": "#ffffff",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a",
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2.5rem",
+          },
+          fontFamily: {
+            "display": ["Playfair Display"],
+            "headline-lg": ["Playfair Display"],
+            "headline-md": ["Playfair Display"],
+            "headline-sm": ["Playfair Display"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "title-md": ["Plus Jakarta Sans"],
+          },
+          fontSize: {
+            "headline-lg": ["40px", { lineHeight: "48px", letterSpacing: "-0.01em", fontWeight: "500" }],
+            "headline-md": ["28px", { lineHeight: "36px", fontWeight: "500" }],
+            "headline-sm": ["22px", { lineHeight: "30px", fontWeight: "600" }],
+            "body-lg": ["17px", { lineHeight: "28px", fontWeight: "400" }],
+            "body-md": ["15px", { lineHeight: "24px", fontWeight: "400" }],
+            "body-sm": ["13px", { lineHeight: "20px", fontWeight: "400" }],
+            "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.06em", fontWeight: "600" }],
+            "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.08em", fontWeight: "600" }],
+            "title-md": ["18px", { lineHeight: "26px", fontWeight: "600" }],
+          }
+        }
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../config.js"></script>
+  <style>
+    html { scroll-behavior: smooth; overflow-x: hidden; overflow-y: auto !important; height: auto !important; width: 100%; }
+    body { margin: 0; padding: 0; overflow-x: hidden; overflow-y: visible !important; min-height: 100vh; width: 100%; position: relative; }
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: #f6f3f2; }
+    ::-webkit-scrollbar-thumb { background: #d6c2c1; border-radius: 9999px; border: 2px solid #f6f3f2; }
+    ::-webkit-scrollbar-thumb:hover { background: #845050; }
+  </style>
+</head>
+<body class="bg-background font-body-md text-on-surface antialiased">
+
+  <!-- Sidebar -->
+  <aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)] overflow-y-auto">
+    <div class="flex flex-col">
+      <!-- Logo -->
+      <div class="h-20 px-space-lg flex items-center gap-space-sm bg-surface-container-low">
+        <img alt="Logo Dewi Wedding84" class="h-12 w-auto object-contain" src="../assets/logo.png" style="filter: drop-shadow(0 1px 4px rgba(132,80,80,0.55)) drop-shadow(0 0px 2px rgba(80,40,40,0.7));">
+        <div class="flex flex-col">
+          <span class="font-headline-sm text-headline-sm text-primary tracking-tight">Dewi Wedding84</span>
+          <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Bridal MUA &amp; Decor</span>
+        </div>
+      </div>
+
+      <!-- Status & Link -->
+      <div class="px-space-md py-space-sm">
+        <div class="px-space-md py-space-xs rounded-full bg-surface-container flex items-center justify-between mb-2">
+          <span class="font-label-sm text-label-sm text-on-surface-variant">Sistem Booking</span>
+          <span class="flex items-center gap-1 font-label-sm text-label-sm text-secondary">
+            <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>Online
+          </span>
+        </div>
+        <a href="../index.html" target="_blank" class="flex items-center justify-between px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[18px] text-primary">language</span>
+            <span class="font-label-sm text-label-sm font-semibold">Buka Landing Page</span>
+          </div>
+          <span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[10px] font-semibold uppercase tracking-wider">Live</span>
+        </a>
+      </div>
+
+      <!-- Nav -->
+      <nav class="flex flex-col gap-1 px-space-md mt-space-sm">
+        <a aria-current="page" class="flex items-center gap-3 px-space-md py-space-sm rounded-lg transition-colors bg-primary-container text-on-primary-container font-semibold shadow-[0_2px_6px_-1px_rgba(201,139,139,0.2)]" href="#">
+          <span class="material-symbols-outlined text-[20px]">space_dashboard</span>
+          <span class="font-body-sm text-body-sm">Dashboard Ringkasan</span>
+        </a>
+        <a class="flex items-center gap-3 px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" href="#">
+          <span class="material-symbols-outlined text-[20px]">brush</span>
+          <span class="font-body-sm text-body-sm">Manajemen Paket &amp; Layanan</span>
+        </a>
+        <a class="flex items-center gap-3 px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" href="#">
+          <span class="material-symbols-outlined text-[20px]">photo_library</span>
+          <span class="font-body-sm text-body-sm">Galeri Portofolio &amp; Foto</span>
+        </a>
+        <a class="flex items-center gap-3 px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" href="#">
+          <span class="material-symbols-outlined text-[20px]">settings</span>
+          <span class="font-body-sm text-body-sm">Pengaturan</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- User Info -->
+    <div class="p-space-md bg-surface-container-low">
+      <div class="p-space-md rounded-xl bg-surface-container-lowest shadow-[0_4px_20px_-2px_rgba(43,43,43,0.04)] flex flex-col gap-2">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+            <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
+          </div>
+          <div class="flex flex-col">
+            <span id="sidebar-username" class="font-body-sm text-body-sm font-semibold text-on-surface">Admin</span>
+            <span class="font-label-sm text-label-sm text-on-surface-variant">Lead Art Director</span>
+          </div>
+        </div>
+        <button onclick="handleLogout()" class="w-full mt-1 px-3 py-1.5 rounded-lg border border-outline-variant/60 hover:bg-error-container hover:text-on-error-container text-on-surface-variant text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors cursor-pointer">
+          <span class="material-symbols-outlined text-[16px]">logout</span>
+          <span>Keluar / Logout</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Wrapper -->
+  <div class="pl-72 flex flex-col min-h-screen">
+
+    <!-- Top Header -->
+    <header class="fixed top-0 left-72 right-0 h-20 bg-surface/80 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+      <div class="h-20 w-full px-space-lg flex items-center justify-between">
+        <div class="flex items-center gap-space-md">
+          <img alt="Logo Dewi Wedding84" class="h-12 w-auto object-contain" src="../assets/logo.png" style="filter: drop-shadow(0 1px 4px rgba(132,80,80,0.55)) drop-shadow(0 0px 2px rgba(80,40,40,0.7));">
+          <div class="hidden md:flex items-center gap-space-sm pl-space-sm">
+            <div class="flex flex-col">
+              <span class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight leading-tight" style="font-family:'Playfair Display',serif;">Dewi Rias</span>
+              <span class="font-label-md text-label-md text-on-surface font-semibold uppercase tracking-wider">Portal Administrasi Pernikahan</span>
+              <span class="font-label-sm text-[11px] text-secondary flex items-center gap-1">
+                <span class="material-symbols-outlined text-[13px]">sync</span>
+                Tersinkronisasi dengan Landing Page &amp; Form WhatsApp (0887433352681)
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-space-md">
+          <a href="../index.html" target="_blank" class="hidden lg:flex items-center gap-1.5 px-space-md py-space-xs rounded-full bg-primary-fixed text-on-primary-fixed hover:bg-primary-container transition-colors font-label-sm text-label-sm font-semibold">
+            <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+            <span>Lihat Website Utama</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse ml-0.5"></span>
+          </a>
+          <div class="flex items-center gap-space-sm">
+            <button class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors">
+              <span class="material-symbols-outlined text-[20px]">notifications</span>
+            </button>
+          </div>
+          <button onclick="handleLogout()" title="Keluar / Logout" class="w-8 h-8 rounded-full bg-primary hover:bg-on-primary-container text-on-primary flex items-center justify-center transition-colors cursor-pointer">
+            <span class="material-symbols-outlined text-[18px]">logout</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="w-full pt-20 px-space-lg pb-space-xl flex-1 bg-background">
+      <div class="flex flex-col w-full">
+
+        <!-- Greeting Banner -->
+        <div class="relative overflow-hidden rounded-xl bg-surface-container-low p-space-lg shadow-sm mb-space-lg">
+          <div class="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-secondary-fixed/20 blur-3xl pointer-events-none"></div>
+          <div class="absolute right-1/4 -bottom-20 w-64 h-64 rounded-full bg-primary-container/15 blur-2xl pointer-events-none"></div>
+          <div class="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-lg">
+            <div class="flex flex-col gap-1.5 max-w-2xl">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="px-space-sm py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase tracking-wider flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Studio Trowulan Mojokerto Aktif
+                </span>
+                <span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[15px] text-primary">calendar_today</span>
+                  <span id="tanggal-hari-ini">—</span>
+                </span>
+              </div>
+              <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+                Selamat Datang, <span class="text-primary italic" id="greeting-name">Kak Dewi</span>
+              </h1>
+              <p class="font-body-md text-body-md text-on-surface-variant">
+                Pantau dan kelola seluruh foto portofolio rias pengantin adat, dekorasi pelaminan, serta katalog paket layanan pernikahan secara real-time.
+              </p>
+            </div>
+            <!-- Quick Action Buttons -->
+            <div class="flex items-center gap-space-sm flex-wrap">
+              <button onclick="document.getElementById('modal-upload-foto').classList.remove('hidden')" class="px-space-md py-space-sm rounded-full bg-secondary text-on-secondary font-title-md text-body-sm flex items-center gap-2 shadow-sm hover:opacity-95 transition-all">
+                <span class="material-symbols-outlined text-[18px]">add_photo_alternate</span>
+                <span>+ Tambah Foto / Gambar</span>
+              </button>
+              <button onclick="document.getElementById('modal-tambah-paket').classList.remove('hidden')" class="px-space-md py-space-sm rounded-full bg-surface-container-lowest text-on-surface font-title-md text-body-sm flex items-center gap-2 shadow-sm hover:bg-surface-container transition-all">
+                <span class="material-symbols-outlined text-[18px] text-primary">library_add</span>
+                <span>+ Buat Menu / Paket Baru</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPI Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-lg">
+          <!-- Card 1: Total Foto -->
+          <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between">
+              <div class="w-11 h-11 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+                <span class="material-symbols-outlined text-[22px]">photo_library</span>
+              </div>
+              <span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-medium">Aktif di Web</span>
+            </div>
+            <div class="mt-space-md">
+              <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Foto Portofolio</span>
+              <div class="flex items-baseline gap-2 mt-1">
+                <span id="kpi-total-foto" class="font-headline-md text-headline-md text-on-surface font-bold">0</span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant">Foto HD</span>
+              </div>
+              <div class="flex items-center gap-1.5 mt-2 font-label-sm text-label-sm text-on-surface-variant">
+                <span class="material-symbols-outlined text-[16px]">trending_up</span>
+                <span class="font-normal">Belum ada data tayang</span>
+              </div>
+            </div>
+          </div>
+          <!-- Card 2: Kategori -->
+          <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between">
+              <div class="w-11 h-11 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+                <span class="material-symbols-outlined text-[22px]">category</span>
+              </div>
+              <span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-semibold">5 Tema</span>
+            </div>
+            <div class="mt-space-md">
+              <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Kategori Rias &amp; Dekor</span>
+              <div class="flex items-baseline gap-1 mt-1">
+                <span class="font-headline-md text-headline-md text-primary font-bold">5</span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant ml-1.5">Gaya Pengantin</span>
+              </div>
+              <span class="font-label-sm text-label-sm text-on-surface-variant mt-2 block">Sunda, Solo, Muslimah, Modern, Dekor</span>
+            </div>
+          </div>
+          <!-- Card 3: Paket Layanan -->
+          <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between">
+              <div class="w-11 h-11 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+                <span class="material-symbols-outlined text-[22px]">inventory_2</span>
+              </div>
+              <span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant">Tersedia</span>
+            </div>
+            <div class="mt-space-md">
+              <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Paket Layanan Pernikahan</span>
+              <div class="flex items-baseline gap-2 mt-1">
+                <span id="kpi-total-paket" class="font-headline-md text-headline-md text-on-surface font-bold">0</span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant">Paket Aktif</span>
+              </div>
+              <span class="font-label-sm text-label-sm text-primary flex items-center gap-1 mt-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>Syarat DP 20% aktif terintegrasi
+              </span>
+            </div>
+          </div>
+          <!-- Card 4: Status Web -->
+          <div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+            <div class="flex items-start justify-between">
+              <div class="w-11 h-11 rounded-full bg-surface-container-high flex items-center justify-center text-secondary">
+                <span class="material-symbols-outlined text-[22px]">cloud_done</span>
+              </div>
+              <span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-semibold">Sinkron</span>
+            </div>
+            <div class="mt-space-md">
+              <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider block">Status Website Live</span>
+              <div class="flex items-baseline gap-2 mt-1">
+                <span class="font-headline-md text-headline-md text-secondary font-bold">Online</span>
+              </div>
+              <span class="font-label-sm text-label-sm text-on-surface-variant mt-2 block">Form WhatsApp &amp; Galeri siap diakses</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Galeri Portofolio -->
+        <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm mb-space-lg">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-space-md mb-space-md">
+            <div>
+              <span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest font-semibold">Studio &amp; Lookbook Showcase</span>
+              <h2 class="font-headline-sm text-headline-sm text-on-surface">Manajemen Konten &amp; Gambar Portofolio</h2>
+              <p class="font-body-sm text-body-sm text-on-surface-variant">Kelola, tambah foto pengantin adat, gaun manten, dan dekorasi panggung pelaminan yang tampil di galeri website utama.</p>
+            </div>
+            <div class="flex items-center gap-space-sm flex-wrap">
+              <button onclick="document.getElementById('modal-upload-foto').classList.remove('hidden')" class="px-space-md py-space-sm rounded-full bg-primary text-on-primary font-title-md text-body-sm flex items-center gap-2 shadow-sm hover:bg-on-primary-container transition-all">
+                <span class="material-symbols-outlined text-[18px]">cloud_upload</span>
+                <span>+ Upload Gambar Baru</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Filter Tabs -->
+          <div class="flex items-center gap-2 overflow-x-auto pb-2 mb-space-md border-b border-surface-container">
+            <button class="px-4 py-1.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-semibold transition-colors">Semua Foto</button>
+            <button class="px-4 py-1.5 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container font-label-sm text-label-sm font-medium transition-colors">Sunda Siger</button>
+            <button class="px-4 py-1.5 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container font-label-sm text-label-sm font-medium transition-colors">Solo Basahan</button>
+            <button class="px-4 py-1.5 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container font-label-sm text-label-sm font-medium transition-colors">Muslimah / Glamour</button>
+            <button class="px-4 py-1.5 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container font-label-sm text-label-sm font-medium transition-colors">Dekorasi Pelaminan</button>
+            <button class="px-4 py-1.5 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container font-label-sm text-label-sm font-medium transition-colors">Gaun &amp; Kostum</button>
+          </div>
+
+          <!-- Empty State Foto -->
+          <div id="empty-state-foto" class="flex flex-col items-center justify-center py-16 text-center">
+            <div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-4">
+              <span class="material-symbols-outlined text-[32px] text-outline">photo_library</span>
+            </div>
+            <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Belum Ada Foto Portofolio</h3>
+            <p class="font-body-sm text-body-sm text-on-surface-variant mb-4 max-w-sm">Mulai tambahkan foto rias pengantin, dekorasi pelaminan, atau busana untuk ditampilkan di galeri website utama.</p>
+            <button onclick="document.getElementById('modal-upload-foto').classList.remove('hidden')" class="px-space-md py-space-sm rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-semibold flex items-center gap-2 hover:bg-on-primary-container transition-all">
+              <span class="material-symbols-outlined text-[16px]">add_photo_alternate</span>
+              Upload Foto Pertama
+            </button>
+          </div>
+
+          <!-- Grid Foto (diisi dinamis) -->
+          <div id="grid-foto" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md hidden"></div>
+        </div>
+
+        <!-- Section: Manajemen Paket Layanan -->
+        <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm mb-space-lg">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-space-md mb-space-md">
+            <div>
+              <span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest font-semibold">Katalog &amp; Penentuan Harga</span>
+              <h2 class="font-headline-sm text-headline-sm text-on-surface">Manajemen Menu &amp; Paket Layanan</h2>
+              <p class="font-body-sm text-body-sm text-on-surface-variant">Atur paket pernikahan, harga paket, rincian busana, dan syarat DP minimal 20% yang otomatis terhubung ke formulir pemesanan web.</p>
+            </div>
+            <div class="flex items-center gap-space-sm">
+              <button onclick="document.getElementById('modal-tambah-paket').classList.remove('hidden')" class="px-space-md py-space-sm rounded-full bg-primary text-on-primary font-title-md text-body-sm flex items-center gap-2 shadow-sm hover:bg-on-primary-container transition-all">
+                <span class="material-symbols-outlined text-[18px]">add_circle</span>
+                <span>+ Buat Menu / Paket Baru</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Empty State Paket -->
+          <div id="empty-state-paket" class="flex flex-col items-center justify-center py-16 text-center">
+            <div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-4">
+              <span class="material-symbols-outlined text-[32px] text-outline">inventory_2</span>
+            </div>
+            <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Belum Ada Paket Layanan</h3>
+            <p class="font-body-sm text-body-sm text-on-surface-variant mb-4 max-w-sm">Buat paket pernikahan pertama Anda — seperti Paket Akad, Paket Silver, atau Paket All-In Mewah — lengkap dengan harga dan fasilitas.</p>
+            <button onclick="document.getElementById('modal-tambah-paket').classList.remove('hidden')" class="px-space-md py-space-sm rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-semibold flex items-center gap-2 hover:bg-on-primary-container transition-all">
+              <span class="material-symbols-outlined text-[16px]">add_circle</span>
+              Buat Paket Pertama
+            </button>
+          </div>
+
+          <!-- Grid Paket (diisi dinamis) -->
+          <div id="grid-paket" class="grid grid-cols-1 md:grid-cols-3 gap-space-md hidden"></div>
+        </div>
+
+        <!-- Section: Status Integrasi Web -->
+        <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-space-md mb-space-md">
+            <div>
+              <span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest font-semibold">Integrasi Landing Page</span>
+              <h2 class="font-headline-sm text-headline-sm text-on-surface">Status Tayang &amp; Publikasi Web Dewi Wedding84</h2>
+              <p class="font-body-sm text-body-sm text-on-surface-variant">Setiap perubahan foto portofolio dan paket menu langsung terhubung ke landing page publik dan formulir order pengantin.</p>
+            </div>
+            <div class="flex items-center gap-space-sm">
+              <a href="../index.html" target="_blank" class="px-space-md py-space-sm rounded-full bg-primary-fixed text-on-primary-fixed font-title-md text-body-sm flex items-center gap-2 hover:bg-primary-container transition-all">
+                <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                <span>Pratinjau Landing Page</span>
+              </a>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+            <div class="p-space-md rounded-xl bg-surface-container-low border border-surface-container flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-secondary-fixed/20 text-secondary flex items-center justify-center">
+                <span class="material-symbols-outlined text-[20px]">sync</span>
+              </div>
+              <div>
+                <span class="font-title-md text-body-md font-semibold text-on-surface block">Penyelarasan Galeri Otomatis</span>
+                <span id="last-sync-time" class="font-label-sm text-label-sm text-on-surface-variant">Memuat status sinkronisasi...</span>
+              </div>
+            </div>
+            <div class="p-space-md rounded-xl bg-surface-container-low border border-surface-container flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-primary-fixed text-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-[20px]">verified</span>
+              </div>
+              <div>
+                <span class="font-title-md text-body-md font-semibold text-on-surface block">Formulir WhatsApp Aktif</span>
+                <span class="font-label-sm text-label-sm text-on-surface-variant">Tersambung ke No: 0887433352681</span>
+              </div>
+            </div>
+            <div class="p-space-md rounded-xl bg-surface-container-low border border-surface-container flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center">
+                <span class="material-symbols-outlined text-[20px]">security</span>
+              </div>
+              <div>
+                <span class="font-title-md text-body-md font-semibold text-on-surface block">Kebijakan DP 20% Terkunci</span>
+                <span class="font-label-sm text-label-sm text-on-surface-variant">Kalkulasi otomatis di seluruh paket</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full bg-surface-container-low py-space-md px-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+        <span class="font-body-sm text-body-sm text-on-surface-variant">© 2026 Dewi Wedding84 Bridal &amp; Decor. Studio Trowulan, Mojokerto.</span>
+        <a href="https://wa.me/62887433352681" target="_blank" class="font-label-sm text-label-sm text-primary hover:underline flex items-center gap-1">
+          <span class="material-symbols-outlined text-[14px]">call</span>WA Resmi: 0887433352681
+        </a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal: Upload Foto Portofolio -->
+  <div id="modal-upload-foto" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-on-surface/50 backdrop-blur-sm hidden">
+    <div class="bg-surface-container-lowest rounded-xl shadow-xl w-full max-w-xl overflow-hidden flex flex-col">
+      <div class="flex items-center justify-between p-space-md border-b border-surface-container bg-surface-container-low">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[22px]">add_photo_alternate</span>
+          <h3 class="font-headline-sm text-[18px] text-on-surface font-bold">Tambah / Edit Gambar Portofolio</h3>
+        </div>
+        <button onclick="document.getElementById('modal-upload-foto').classList.add('hidden')" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+      <div class="p-space-lg flex flex-col gap-space-md max-h-[75vh] overflow-y-auto">
+        <!-- Upload Area -->
+        <div class="flex flex-col gap-1">
+          <label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">File Foto Pengantin / Dekorasi</label>
+          <div class="border-2 border-dashed border-primary/40 rounded-xl p-space-md flex flex-col items-center justify-center bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer text-center">
+            <span class="material-symbols-outlined text-[36px] text-primary mb-1">cloud_upload</span>
+            <span class="font-title-md text-body-sm text-on-surface font-semibold">Tarik &amp; Letakkan Gambar di Sini</span>
+            <span class="font-label-sm text-[11px] text-on-surface-variant mt-0.5">Format JPG, PNG, atau WEBP hingga 10MB</span>
+            <button type="button" class="mt-2 px-3 py-1 rounded-full bg-primary text-on-primary font-label-sm text-label-sm">Pilih dari Komputer</button>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+          <div class="flex flex-col gap-1">
+            <label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Judul Foto / Gaya Rias *</label>
+            <input type="text" id="input-foto-judul" placeholder="Contoh: Sunda Siger Mahkota Gold" class="px-3 py-2 rounded-lg bg-surface-container-low border border-surface-container text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary w-full">
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Kategori</label>
+            <select id="input-foto-kategori" class="px-3 py-2 rounded-lg bg-surface-container-low border border-surface-container text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary w-full">
+              <option>Sunda Siger</option>
+              <option>Solo Basahan</option>
+              <option>Muslimah / Barbie Glamour</option>
+              <option>Dekorasi Pelaminan</option>
+              <option>Prewedding</option>
+            </select>
+          </div>
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Keterangan / Fasilitas Busana</label>
+          <textarea id="input-foto-desc" rows="2" class="px-3 py-2 rounded-lg bg-surface-container-low border border-surface-container text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary w-full" placeholder="Keterangan aksesoris, melati, atau ukuran dekorasi..."></textarea>
+        </div>
+        <div class="flex items-center gap-2">
+          <input type="checkbox" id="input-foto-publish" checked class="rounded border-outline">
+          <label for="input-foto-publish" class="font-body-sm text-body-sm text-on-surface">Tampilkan langsung di Galeri Portofolio Website Pengantin</label>
+        </div>
+      </div>
+      <div class="p-space-md border-t border-surface-container bg-surface-container-low flex items-center justify-end gap-space-sm">
+        <button type="button" onclick="document.getElementById('modal-upload-foto').classList.add('hidden')" class="px-space-md py-2 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold hover:bg-surface-container-high transition-colors">Batal</button>
+        <button type="button" onclick="handleSavePhoto()" class="px-space-md py-2 rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-semibold hover:bg-on-primary-container transition-colors shadow-sm flex items-center gap-1.5 cursor-pointer">
+          <span class="material-symbols-outlined text-[16px]">save</span> Simpan &amp; Publikasikan
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Tambah Paket Layanan -->
+  <div id="modal-tambah-paket" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-on-surface/50 backdrop-blur-sm hidden">
+    <div class="bg-surface-container-lowest rounded-xl shadow-xl w-full max-w-xl overflow-hidden flex flex-col">
+      <div class="flex items-center justify-between p-space-md border-b border-surface-container bg-surface-container-low">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[22px]">library_add</span>
+          <h3 class="font-headline-sm text-[18px] text-on-surface font-bold">Buat Menu / Paket Layanan Baru</h3>
+        </div>
+        <button onclick="document.getElementById('modal-tambah-paket').classList.add('hidden')" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+      <div class="p-space-lg flex flex-col gap-space-md max-h-[75vh] overflow-y-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+          <div class="flex flex-col gap-1">
+            <label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Nama Paket Pernikahan *</label>
+            <input type="text" id="input-paket-nama" placeholder="Contoh: Paket Platinum Glamour" class="px-3 py-2 rounded-lg bg-surface-container-low border border-surface-container text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary w-full">
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Kategori Paket</label>
+            <select id="input-paket-kategori" class="px-3 py-2 rounded-lg bg-surface-container-low border border-surface-container text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary w-full">
+              <option>All-In Lengkap (MUA + Pelaminan)</option>
+              <option>Rias MUA Adat Only</option>
+              <option>Dekorasi Pelaminan Gedung</option>
+              <option>Paket Akad Khidmat Minimalis</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+          <div class="flex flex-col gap-1">
+            <label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Harga Total Paket (Rp) *</label>
+            <input type="number" id="input-paket-harga" placeholder="Contoh: 12500000" class="px-3 py-2 rounded-lg bg-surface-container-low border border-surface-container text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary w-full">
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="font-label-sm text-label-sm text-secondary font-semibold">Uang Muka Min. 20% (Kunci Slot)</label>
+            <div class="px-3 py-2 rounded-lg bg-secondary-fixed/20 border border-secondary/20 text-on-secondary-fixed font-body-sm text-body-sm font-semibold flex items-center justify-between">
+              <span>Otomatis 20% Total</span>
+              <span class="material-symbols-outlined text-[16px] text-secondary">lock</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Detail Fasilitas &amp; Rias Busana</label>
+          <textarea id="input-paket-fitur" rows="3" class="px-3 py-2 rounded-lg bg-surface-container-low border border-surface-container text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary w-full" placeholder="Tulis poin fasilitas (satu per baris):&#10;Rias Akad + Resepsi&#10;Dekorasi 8m&#10;Busana Orang Tua"></textarea>
+        </div>
+        <div class="flex items-center gap-2">
+          <input type="checkbox" id="input-paket-fav" class="rounded border-outline">
+          <label for="input-paket-fav" class="font-body-sm text-body-sm text-on-surface">Tandai sebagai Paket 'Paling Favorit' di Website Utama</label>
+        </div>
+      </div>
+      <div class="p-space-md border-t border-surface-container bg-surface-container-low flex items-center justify-end gap-space-sm">
+        <button type="button" onclick="document.getElementById('modal-tambah-paket').classList.add('hidden')" class="px-space-md py-2 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold hover:bg-surface-container-high transition-colors">Batal</button>
+        <button type="button" onclick="handleSavePackage()" class="px-space-md py-2 rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-semibold hover:bg-on-primary-container transition-colors shadow-sm flex items-center gap-1.5 cursor-pointer">
+          <span class="material-symbols-outlined text-[16px]">publish</span> Simpan &amp; Aktifkan
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ─── Inisialisasi Tanggal Hari Ini ──────────────────────────────────
+    (function setTodayDate() {
+      const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+      const bulan = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+      const now = new Date();
+      const str = `${hari[now.getDay()]}, ${now.getDate()} ${bulan[now.getMonth()]} ${now.getFullYear()}`;
+      const el = document.getElementById('tanggal-hari-ini');
+      if (el) el.textContent = str;
+
+      // Update last sync time
+      const syncEl = document.getElementById('last-sync-time');
+      if (syncEl) {
+        const jam = now.getHours().toString().padStart(2, '0');
+        const mnt = now.getMinutes().toString().padStart(2, '0');
+        syncEl.textContent = `Terakhir diperbarui: Hari ini, ${jam}:${mnt} WIB`;
+      }
+    })();
+
+    // ─── Autentikasi ─────────────────────────────────────────────────────
+    async function checkAuth() {
+      const demoAuth = localStorage.getItem('dewi_admin_auth');
+      if (demoAuth) {
+        try {
+          const parsed = JSON.parse(demoAuth);
+          if (parsed && parsed.loggedIn) {
+            // Tampilkan nama user di sidebar
+            const nameEl = document.getElementById('sidebar-username');
+            if (nameEl && parsed.name) nameEl.textContent = parsed.name;
+            const greetEl = document.getElementById('greeting-name');
+            if (greetEl && parsed.name) greetEl.textContent = 'Kak ' + parsed.name;
+            return;
+          }
+        } catch (e) {}
+      }
+
+      const isConfigured = typeof window.isSupabaseConfigured === 'function' && window.isSupabaseConfigured();
+      if (isConfigured) {
+        const client = typeof window.initSupabase === 'function' ? window.initSupabase() : null;
+        if (client && client.auth) {
+          try {
+            const { data } = await client.auth.getSession();
+            if (data && data.session) return;
+          } catch (e) {
+            console.warn('Gagal cek sesi Supabase:', e);
+          }
+        }
+        window.location.replace('login.html');
+      }
+    }
+
+    // ─── Logout ──────────────────────────────────────────────────────────
+    async function handleLogout() {
+      if (confirm('Apakah Anda yakin ingin keluar dari Portal Admin Dewi Wedding84?')) {
+        localStorage.removeItem('dewi_admin_auth');
+        localStorage.removeItem('dewi_admin_user');
+        if (typeof window.initSupabase === 'function') {
+          const client = window.initSupabase();
+          if (client && client.auth) {
+            try { await client.auth.signOut(); } catch (e) { console.warn('Gagal sign out:', e); }
+          }
+        }
+        window.location.replace('login.html');
+      }
+    }
+
+    // ─── Simpan Foto ──────────────────────────────────────────────────────
+    async function handleSavePhoto() {
+      const judul = document.getElementById('input-foto-judul')?.value.trim() || '';
+      const kategori = document.getElementById('input-foto-kategori')?.value || 'Sunda Siger';
+      const desc = document.getElementById('input-foto-desc')?.value.trim() || '';
+      const isPub = document.getElementById('input-foto-publish')?.checked ?? true;
+
+      if (!judul) {
+        alert('Harap masukkan judul foto!');
+        return;
+      }
+
+      const isConfigured = typeof window.isSupabaseConfigured === 'function' && window.isSupabaseConfigured();
+      if (isConfigured) {
+        try {
+          const client = window.initSupabase();
+          if (client) {
+            const { error } = await client.from('portfolio').insert([{
+              title: judul, category: kategori, description: desc, is_published: isPub
+            }]);
+            if (error) throw error;
+            alert('Foto baru berhasil disimpan ke database Supabase!');
+            document.getElementById('modal-upload-foto').classList.add('hidden');
+            resetFormFoto();
+            loadDashboardStats();
+            return;
+          }
+        } catch (err) {
+          alert('Gagal menyimpan foto ke Supabase: ' + (err.message || err));
+          return;
+        }
+      }
+
+      alert('Foto berhasil disimpan (Mode Demo Lokal). Begitu Supabase dikonfigurasi di config.js, data langsung tersimpan di cloud!');
+      document.getElementById('modal-upload-foto').classList.add('hidden');
+      resetFormFoto();
+    }
+
+    function resetFormFoto() {
+      document.getElementById('input-foto-judul').value = '';
+      document.getElementById('input-foto-desc').value = '';
+      document.getElementById('input-foto-kategori').selectedIndex = 0;
+      document.getElementById('input-foto-publish').checked = true;
+    }
+
+    // ─── Simpan Paket ─────────────────────────────────────────────────────
+    async function handleSavePackage() {
+      const nama = document.getElementById('input-paket-nama')?.value.trim() || '';
+      const kategori = document.getElementById('input-paket-kategori')?.value || 'All-In Lengkap';
+      const hargaVal = document.getElementById('input-paket-harga')?.value || '';
+      const harga = parseFloat(hargaVal);
+      const fiturText = document.getElementById('input-paket-fitur')?.value.trim() || '';
+      const isFav = document.getElementById('input-paket-fav')?.checked ?? false;
+
+      if (!nama || isNaN(harga) || harga <= 0) {
+        alert('Harap isi nama paket dan harga total yang valid!');
+        return;
+      }
+
+      const fiturList = fiturText ? fiturText.split('\n').map(f => f.trim()).filter(f => f.length > 0) : [];
+
+      const isConfigured = typeof window.isSupabaseConfigured === 'function' && window.isSupabaseConfigured();
+      if (isConfigured) {
+        try {
+          const client = window.initSupabase();
+          if (client) {
+            const { error } = await client.from('packages').insert([{
+              name: nama, category: kategori, price: harga,
+              dp_percentage: 20.00, description: fiturText.substring(0, 120),
+              features: fiturList, is_favorite: isFav, is_active: true
+            }]);
+            if (error) throw error;
+            alert('Paket layanan baru berhasil disimpan ke database Supabase!');
+            document.getElementById('modal-tambah-paket').classList.add('hidden');
+            resetFormPaket();
+            loadDashboardStats();
+            return;
+          }
+        } catch (err) {
+          alert('Gagal menyimpan paket ke Supabase: ' + (err.message || err));
+          return;
+        }
+      }
+
+      alert('Paket berhasil dibuat (Mode Demo Lokal). Begitu Supabase dikonfigurasi, paket langsung tampil di website utama!');
+      document.getElementById('modal-tambah-paket').classList.add('hidden');
+      resetFormPaket();
+    }
+
+    function resetFormPaket() {
+      document.getElementById('input-paket-nama').value = '';
+      document.getElementById('input-paket-harga').value = '';
+      document.getElementById('input-paket-fitur').value = '';
+      document.getElementById('input-paket-kategori').selectedIndex = 0;
+      document.getElementById('input-paket-fav').checked = false;
+    }
+
+    // ─── Load Stats dari Supabase ─────────────────────────────────────────
+    async function loadDashboardStats() {
+      const isConfigured = typeof window.isSupabaseConfigured === 'function' && window.isSupabaseConfigured();
+      if (!isConfigured) return;
+
+      const client = window.initSupabase();
+      if (!client) return;
+
+      try {
+        const [portRes, pkgRes] = await Promise.all([
+          client.from('portfolio').select('id', { count: 'exact', head: true }),
+          client.from('packages').select('id', { count: 'exact', head: true }),
+        ]);
+
+        const totalFoto = portRes.count ?? 0;
+        const totalPaket = pkgRes.count ?? 0;
+
+        const kpiFoto = document.getElementById('kpi-total-foto');
+        if (kpiFoto) kpiFoto.textContent = totalFoto;
+
+        const kpiPaket = document.getElementById('kpi-total-paket');
+        if (kpiPaket) kpiPaket.textContent = totalPaket;
+
+        // Toggle empty states
+        const emptyFoto = document.getElementById('empty-state-foto');
+        const gridFoto = document.getElementById('grid-foto');
+        if (totalFoto > 0) {
+          emptyFoto?.classList.add('hidden');
+          gridFoto?.classList.remove('hidden');
+        }
+
+        const emptyPaket = document.getElementById('empty-state-paket');
+        const gridPaket = document.getElementById('grid-paket');
+        if (totalPaket > 0) {
+          emptyPaket?.classList.add('hidden');
+          gridPaket?.classList.remove('hidden');
+        }
+
+        console.log('Dashboard stats dimuat:', { portfolio: totalFoto, packages: totalPaket });
+      } catch (e) {
+        console.warn('Gagal memuat stats Supabase:', e);
+      }
+    }
+
+    // ─── DOMContentLoaded ─────────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAuth();
+      loadDashboardStats();
+    });
+  </script>
+</body>
+</html>
